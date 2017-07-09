@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("IPTVListManager")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyDescription("An application to create, edit, load and save your IPTV list.")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("IPTVListManager")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyCopyright("Copyright ©  2017 - João Paulo Ricardo (Tryller)")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

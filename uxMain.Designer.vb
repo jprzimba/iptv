@@ -29,6 +29,7 @@ Partial Class uxMain
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.uxIPTVList = New System.Windows.Forms.TextBox()
         Me.uxClassName = New System.Windows.Forms.TextBox()
         Me.uxLabelList = New System.Windows.Forms.Label()
@@ -38,7 +39,6 @@ Partial Class uxMain
         Me.Label3 = New System.Windows.Forms.Label()
         Me.uxContentURL = New System.Windows.Forms.TextBox()
         Me.uxAddToList = New System.Windows.Forms.Button()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,9 +84,15 @@ Partial Class uxMain
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(112, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
         'uxIPTVList
         '
-        Me.uxIPTVList.Location = New System.Drawing.Point(12, 90)
+        Me.uxIPTVList.Location = New System.Drawing.Point(12, 50)
         Me.uxIPTVList.Multiline = True
         Me.uxIPTVList.Name = "uxIPTVList"
         Me.uxIPTVList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -95,7 +101,7 @@ Partial Class uxMain
         '
         'uxClassName
         '
-        Me.uxClassName.Location = New System.Drawing.Point(97, 351)
+        Me.uxClassName.Location = New System.Drawing.Point(97, 311)
         Me.uxClassName.Name = "uxClassName"
         Me.uxClassName.Size = New System.Drawing.Size(100, 20)
         Me.uxClassName.TabIndex = 2
@@ -103,7 +109,7 @@ Partial Class uxMain
         'uxLabelList
         '
         Me.uxLabelList.AutoSize = True
-        Me.uxLabelList.Location = New System.Drawing.Point(13, 70)
+        Me.uxLabelList.Location = New System.Drawing.Point(13, 30)
         Me.uxLabelList.Name = "uxLabelList"
         Me.uxLabelList.Size = New System.Drawing.Size(65, 13)
         Me.uxLabelList.TabIndex = 3
@@ -111,7 +117,7 @@ Partial Class uxMain
         '
         'uxContentName
         '
-        Me.uxContentName.Location = New System.Drawing.Point(97, 377)
+        Me.uxContentName.Location = New System.Drawing.Point(97, 337)
         Me.uxContentName.Name = "uxContentName"
         Me.uxContentName.Size = New System.Drawing.Size(181, 20)
         Me.uxContentName.TabIndex = 4
@@ -119,7 +125,7 @@ Partial Class uxMain
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 351)
+        Me.Label1.Location = New System.Drawing.Point(12, 311)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(66, 13)
         Me.Label1.TabIndex = 5
@@ -128,7 +134,7 @@ Partial Class uxMain
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 380)
+        Me.Label2.Location = New System.Drawing.Point(13, 340)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(78, 13)
         Me.Label2.TabIndex = 6
@@ -137,7 +143,7 @@ Partial Class uxMain
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(203, 351)
+        Me.Label3.Location = New System.Drawing.Point(203, 311)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 13)
         Me.Label3.TabIndex = 7
@@ -145,7 +151,7 @@ Partial Class uxMain
         '
         'uxContentURL
         '
-        Me.uxContentURL.Location = New System.Drawing.Point(282, 350)
+        Me.uxContentURL.Location = New System.Drawing.Point(282, 310)
         Me.uxContentURL.Name = "uxContentURL"
         Me.uxContentURL.Size = New System.Drawing.Size(312, 20)
         Me.uxContentURL.TabIndex = 8
@@ -153,18 +159,12 @@ Partial Class uxMain
         'uxAddToList
         '
         Me.uxAddToList.ForeColor = System.Drawing.Color.Black
-        Me.uxAddToList.Location = New System.Drawing.Point(285, 373)
+        Me.uxAddToList.Location = New System.Drawing.Point(285, 333)
         Me.uxAddToList.Name = "uxAddToList"
         Me.uxAddToList.Size = New System.Drawing.Size(309, 23)
         Me.uxAddToList.TabIndex = 9
         Me.uxAddToList.Text = "Add to List"
         Me.uxAddToList.UseVisualStyleBackColor = True
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-        Me.AboutToolStripMenuItem.Text = "About"
         '
         'PictureBox1
         '
@@ -181,7 +181,7 @@ Partial Class uxMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Gray
-        Me.ClientSize = New System.Drawing.Size(606, 407)
+        Me.ClientSize = New System.Drawing.Size(606, 368)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.uxAddToList)
         Me.Controls.Add(Me.uxContentURL)

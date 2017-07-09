@@ -5,6 +5,40 @@ Public Class uxMain
 
     End Sub
 
+    Public Sub SortLines(sender As Object, e As EventArgs)
+        uxIPTVList.HideSelection = False
+        'for showing selection
+        'Saving current selection
+        Dim selectedText As String = uxIPTVList.SelectedText
+        'Saving curr line
+
+        Dim firstCharInLineIndex As Integer = uxIPTVList.GetFirstCharIndexOfCurrentLine()
+        Dim currLineIndex As Integer = uxIPTVList.Text.Substring(0, firstCharInLineIndex).Count(Function(c) c = ControlChars.Lf)
+        Dim currLine As String = uxIPTVList.Lines(currLineIndex)
+        Dim offset As Integer = uxIPTVList.SelectionStart - firstCharInLineIndex
+
+
+        'Sorting
+        Dim lines As String() = uxIPTVList.Lines
+        Array.Sort(lines, Function(str1 As String, str2 As String) str1.CompareTo(str2))
+        uxIPTVList.Lines = lines
+
+        If Not [String].IsNullOrEmpty((selectedText)) Then
+            'restoring selection
+            Dim newIndex As Integer = uxIPTVList.Text.IndexOf(selectedText)
+            uxIPTVList.[Select](newIndex, selectedText.Length)
+        Else
+            'Restoring the cursor
+
+            'location of the current line
+            Dim lineIdx As Integer = Array.IndexOf(uxIPTVList.Lines, currLine)
+            Dim textIndex As Integer = uxIPTVList.Text.IndexOf(currLine)
+            Dim fullIndex As Integer = textIndex + offset
+            uxIPTVList.SelectionStart = fullIndex
+            uxIPTVList.SelectionLength = 0
+        End If
+    End Sub
+
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         Dim load As New OpenFileDialog
         load.Title = "Load file as CSV Files |*.csv |"
@@ -12,43 +46,46 @@ Public Class uxMain
 
         If (load.ShowDialog() = DialogResult.OK) Then
             uxIPTVList.Clear()
-            Dim fluxoTexto As IO.StreamReader
+            Dim streamReader As StreamReader
 
-            Dim linhaTexto As String
+            Dim textLine As String
             If IO.File.Exists(load.FileName) Then
-                fluxoTexto = New IO.StreamReader(load.FileName)
+                streamReader = New StreamReader(load.FileName)
                 uxLabelList.Text = "Loaded List:" + load.FileName
-                linhaTexto = fluxoTexto.ReadToEnd 'ReadLine
+                textLine = streamReader.ReadToEnd 'ReadLine
 
-                While linhaTexto <> Nothing
-                    uxIPTVList.AppendText(linhaTexto & vbCrLf)
-                    linhaTexto = fluxoTexto.ReadLine
+                While textLine <> Nothing
+                    uxIPTVList.AppendText(textLine & vbCrLf)
+                    textLine = streamReader.ReadLine
+                    SortLines(sender, e)
                 End While
 
-                fluxoTexto.Close()
+                streamReader.Close()
             Else
-                MessageBox.Show("Arquivo não existe")
+                MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End If
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
-        Dim salvarComo As SaveFileDialog = New SaveFileDialog()
-        Dim caminho As DialogResult
-        Dim fluxoTexto As IO.StreamWriter
-        Dim Arquivo As String
+        Dim saveFileDialog As New SaveFileDialog()
+        Dim result As DialogResult
+        Dim streamWriter As StreamWriter
+        Dim fileName As String
 
-        salvarComo.CheckFileExists = False
-        salvarComo.Title = "Save file as CSV Files |*.csv |"
-        caminho = salvarComo.ShowDialog
-        Arquivo = salvarComo.FileName + ".csv"
+        saveFileDialog.CheckFileExists = True
+        saveFileDialog.Title = "Save file as CSV Files |*.csv |"
+        saveFileDialog.Filter = "CSV Files|*.csv|All Files|*"
+        result = saveFileDialog.ShowDialog
+        fileName = saveFileDialog.FileName
 
-        If Arquivo = Nothing Then
-            MessageBox.Show("Arquivo Invalido", "Salvar Como", MessageBoxButtons.OK)
+        If fileName = Nothing Then
+            MessageBox.Show("Invalid File", "Save As", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return
         Else
-            fluxoTexto = New IO.StreamWriter(Arquivo)
-            fluxoTexto.Write(uxIPTVList.Text)
-            fluxoTexto.Close()
+            streamWriter = New StreamWriter(fileName)
+            streamWriter.Write(uxIPTVList.Text)
+            streamWriter.Close()
         End If
     End Sub
 
@@ -56,37 +93,36 @@ Public Class uxMain
         Environment.Exit(0)
     End Sub
 
-    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles uxContentName.TextChanged
-
-    End Sub
-
-    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MenuStrip1.ItemClicked
-
-    End Sub
 
     Private Sub uxAddToList_Click(sender As Object, e As EventArgs) Handles uxAddToList.Click
         If uxClassName.Text = String.Empty Or uxContentName.Text = String.Empty Or uxContentURL.Text = String.Empty Then
-            MessageBox.Show("Não pode usar valores em branco", "Erro", MessageBoxButtons.OK)
+            MessageBox.Show("You can not use empty values", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         Else
             If uxIPTVList.Text = String.Empty Then
-                uxIPTVList.AppendText("Class,Name,URL,Picture" & vbCrLf)
-                uxIPTVList.AppendText(uxClassName.Text.ToLower + "," + uxContentName.Text + "," + uxContentURL.Text & vbCrLf)
+                uxIPTVList.AppendText("Class,Name,URL,Picture")
+                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text + "," + uxContentURL.Text)
                 uxIPTVList.Refresh()
                 uxContentName.Text = ""
                 uxContentURL.Text = ""
                 uxIPTVList.Refresh()
+                SortLines(sender, e)
             Else
-                uxIPTVList.AppendText(uxClassName.Text.ToLower + "," + uxContentName.Text + "," + uxContentURL.Text & vbCrLf)
+                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text + "," + uxContentURL.Text)
                 uxIPTVList.Refresh()
                 uxContentName.Text = ""
                 uxContentURL.Text = ""
                 uxIPTVList.Refresh()
+                SortLines(sender, e)
             End If
         End If
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         Environment.Exit(0)
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MessageBox.Show("IPTV List Manager created by Tryller", "About", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class
