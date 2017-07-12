@@ -5,6 +5,10 @@ Public Class uxMain
 
     End Sub
 
+    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MenuStrip1.ItemClicked
+
+    End Sub
+
     Public Sub SortLines(sender As Object, e As EventArgs)
         uxIPTVList.HideSelection = False
         'for showing selection
@@ -39,6 +43,12 @@ Public Class uxMain
         End If
     End Sub
 
+    Private Sub ClearList()
+        uxClassName.Select()
+        uxContentName.Text = ""
+        uxContentURL.Text = ""
+    End Sub
+
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         Dim load As New OpenFileDialog
         load.Title = "Load file as CSV Files |*.csv |"
@@ -60,6 +70,7 @@ Public Class uxMain
                     SortLines(sender, e)
                 End While
 
+                SortLines(sender, e)
                 streamReader.Close()
             Else
                 MessageBox.Show("File not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -73,7 +84,7 @@ Public Class uxMain
         Dim streamWriter As StreamWriter
         Dim fileName As String
 
-        saveFileDialog.CheckFileExists = True
+        saveFileDialog.CheckFileExists = False
         saveFileDialog.Title = "Save file as CSV Files |*.csv |"
         saveFileDialog.Filter = "CSV Files|*.csv|All Files|*"
         result = saveFileDialog.ShowDialog
@@ -98,21 +109,19 @@ Public Class uxMain
         If uxClassName.Text = String.Empty Or uxContentName.Text = String.Empty Or uxContentURL.Text = String.Empty Then
             MessageBox.Show("You can not use empty values", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
+        ElseIf uxIPTVList.Text.Contains(uxContentURL.Text) Then
+            MessageBox.Show("URL Already in list!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            ClearList()
+            Return
         Else
             If uxIPTVList.Text = String.Empty Then
                 uxIPTVList.AppendText("Class,Name,URL,Picture")
-                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text + "," + uxContentURL.Text)
-                uxIPTVList.Refresh()
-                uxContentName.Text = ""
-                uxContentURL.Text = ""
-                uxIPTVList.Refresh()
+                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text.ToLower + "," + uxContentURL.Text)
+                ClearList()
                 SortLines(sender, e)
             Else
-                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text + "," + uxContentURL.Text)
-                uxIPTVList.Refresh()
-                uxContentName.Text = ""
-                uxContentURL.Text = ""
-                uxIPTVList.Refresh()
+                uxIPTVList.AppendText(vbCrLf & uxClassName.Text.ToUpper + "," + uxContentName.Text.ToLower + "," + uxContentURL.Text)
+                ClearList()
                 SortLines(sender, e)
             End If
         End If
