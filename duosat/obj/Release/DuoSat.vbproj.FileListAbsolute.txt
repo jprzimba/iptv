@@ -1,0 +1,10 @@
+C:\Works\DuoSat IPTV Manager\bin\Release\DuoSat IPTV Manager.exe.config
+C:\Works\DuoSat IPTV Manager\bin\Release\DuoSat IPTV Manager.exe
+C:\Works\DuoSat IPTV Manager\bin\Release\DuoSat IPTV Manager.pdb
+C:\Works\DuoSat IPTV Manager\bin\Release\DuoSat IPTV Manager.xml
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat.Resources.resources
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat.uxMain.resources
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat.vbproj.GenerateResource.Cache
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat IPTV Manager.exe
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat IPTV Manager.xml
+C:\Works\DuoSat IPTV Manager\obj\Release\DuoSat IPTV Manager.pdb

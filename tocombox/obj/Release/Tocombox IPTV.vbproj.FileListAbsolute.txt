@@ -1,0 +1,11 @@
+C:\Works\Tocombox IPTV\bin\Release\Tocombox IPTV.exe.config
+C:\Works\Tocombox IPTV\bin\Release\Tocombox IPTV.exe
+C:\Works\Tocombox IPTV\bin\Release\Tocombox IPTV.pdb
+C:\Works\Tocombox IPTV\bin\Release\Tocombox IPTV.xml
+C:\Works\Tocombox IPTV\obj\Release\IPTV.Resources.resources
+C:\Works\Tocombox IPTV\obj\Release\IPTV.uxMain.resources
+C:\Works\Tocombox IPTV\obj\Release\Tocombox IPTV.vbproj.GenerateResource.Cache
+C:\Works\Tocombox IPTV\obj\Release\Tocombox IPTV.exe
+C:\Works\Tocombox IPTV\obj\Release\Tocombox IPTV.xml
+C:\Works\Tocombox IPTV\obj\Release\Tocombox IPTV.pdb
+C:\Works\Tocombox IPTV\obj\Release\Tocombox IPTV.vbprojResolveAssemblyReference.cache

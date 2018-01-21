@@ -1,0 +1,2 @@
+C:\Works\DuoSat IPTV Manager\bin\Debug\IPTVListManager.exe.config
+C:\Works\DuoSat IPTV Manager\bin\Debug\DuoSat IPTV Manager.exe.config
